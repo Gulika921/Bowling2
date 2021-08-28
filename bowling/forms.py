@@ -20,12 +20,10 @@ class RowSessionCreateForm(forms.ModelForm):
 
 class PlayerForm(forms.ModelForm):
 
-    name = forms.CharField(max_length=100)
     last_update = forms.DateField(widget=forms.SelectDateWidget(
         empty_label=("Choose Year", "Choose Month", "Choose Day"),
         )
     )
-    row = forms.ModelChoiceField(queryset=Row.objects.all())
 
     class Meta:
         model = Player
