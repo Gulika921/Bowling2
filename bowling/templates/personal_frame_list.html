@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+  <div class="col-4">
+    <h1>{{title}}</h1>
+  </div>
+  <div class="col-4">
+    {% now "jS F Y H:i" as date_now %}
+    <h3>{{date_now}}</h3>
+  </div>
+  <div class="col-4">
+    <a class="btn btn-outline-danger" href="{% url 'personal_frame-create' %}">Create</a>
+  </div>
+</div>
+<table class="table table-bordered border-dark">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Player</th>
+      <th scope="col">Sum of frames</th>
+    </tr>
+  </thead>
+  {% for personalframe in personalframe_list %}
+    <tbody>
+      <tr>
+        <th scope="row"><a href="/personal_frame/{{personalframe.id}}">{{personalframe.name}}</a></th>
+        <td>{{personalframe.player}}</td>
+        <td>{{personalframe.frame_sum}}</td>
+      </tr>
+    <tbody>
+  {% endfor %}
+</table>
+{% endblock content%}

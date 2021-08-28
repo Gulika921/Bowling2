@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock extra_css %}
+{% block content %}
+
+<div class="row">
+  <div class="col-4">
+    <h1>Personal throw</h1>
+  </div>
+  <div class="col-4">
+      <a class="btn btn-secondary" href="{%  url 'personal_throw-list' %}">Back</a>
+</div>
+<h3>{{personalthrow.name}}</h3>
+<p class="h5">{{personalthrow.value}}</p>
+<p class="h5">{{personalthrow.frame}}</p>
+<div class="row">
+  <div class="col-12 color_text_red" >
+    {% lorem 3 p %}
+  </div>
+</div>
+{% endblock content%}

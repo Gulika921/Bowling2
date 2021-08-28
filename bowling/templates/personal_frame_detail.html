@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block extra_css %}
+{% endblock extra_css %}
+{% block content %}
+
+<div class="row">
+  <div class="col-4">
+    <h1>Personal frame</h1>
+  </div>
+  <div class="col-4">
+    <div class="dropdown" >
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      Actions
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="{% url 'personal_frame-list' %}">Back</a></li>
+      <li><a class="dropdown-item" href="{% url 'personal_frame-create' %}">Create more</a></li>
+    </ul>
+      </div>
+    </div>
+</div>
+
+<h3>{{personalframe.name}}</h3>
+<p class="h5">{{personalframe.player}}</p>
+<p class="h5">{{personalframe.frame_sum}}</p>
+<div class="row">
+  <div class="col-12 color_text_red" >
+    {% lorem 3 p %}
+  </div>
+</div>
+{% endblock content%}

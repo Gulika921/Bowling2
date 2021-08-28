@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+  <div class="col-4">
+    <h1>{{title}}</h1>
+  </div>
+  <div class="col-4">
+    {% now "jS F Y H:i" as date_now %}
+    <h3>{{date_now}}</h3>
+  </div>
+</div>
+<table class="table table-bordered border-dark">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Value</th>
+      <th scope="col">Frame</th>
+    </tr>
+  </thead>
+  {% for personalthrow in personalthrow_list %}
+    <tbody>
+      <tr>
+        <th scope="row"><a href="/personal_throw/{{personalthrow.id}}">{{personalthrow.name}}</a></th>
+        <td>{{personalthrow.value}}</td>
+        <td>{{personalthrow.frame}}</td>
+      </tr>
+    <tbody>
+  {% endfor %}
+</table>
+{% endblock content%}
