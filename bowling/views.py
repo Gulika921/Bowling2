@@ -5,7 +5,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 from django.contrib.auth.models import User
 from bowling.models import Row, RowSession, Player, PersonalFrame, PersonalThrow
-from bowling.forms import RowSessionCreateForm, PlayerForm, PersonalFrameForm, PersonalThrowForm
+from bowling.forms import RowSessionCreateForm, PlayerForm, PersonalFrameForm, RowForm
 
 
 def make_throws(request, pk):
@@ -44,8 +44,16 @@ def make_throws(request, pk):
         return JsonResponse({"status":"success"})
 
 
-
 # Create your views here.
+
+class RowCreateView(CreateView):
+
+    template_name = "row_create.html"
+
+    model = Row
+    form_class = RowForm
+
+
 class RowListView(ListView):
 
     template_name = "row_list.html"
@@ -109,14 +117,20 @@ class RowSessionCreateView(CreateView):
     model = RowSession
     form_class = RowSessionCreateForm
 
+class RowSessionListView(ListView):
 
-    def get(self, request, *args, **kwargs):
-        data = request.GET
-        user = User.objects.get(pk=request.session["_auth_user_id"])
-        if data:
-            row = Row.objects.get(pk = int(data.get("row")))
-            self.initial = {"row": row, "user":user}
-        return super().get(request, *args, **kwargs)
+    template_name = "row_session_list.html"
+
+    model = RowSession
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update({
+            "title":"List of row sessions",
+            })
+        print(dict(context))
+        return context
 
 
 class PlayerUpdateView(UpdateView):
@@ -214,5 +228,6 @@ class PersonalThrowDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         return context
+
 
 

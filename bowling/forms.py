@@ -1,6 +1,14 @@
 from django import forms
-from bowling.models import RowSession, Row, Player, PersonalFrame, PersonalThrow
+from bowling.models import RowSession, Row, Player, PersonalFrame
 from django.contrib.auth.models import User
+
+class RowForm(forms.ModelForm):
+
+    # name = forms.CharField(max_length=100)
+
+    class Meta:
+        model = Row
+        fields = "__all__"
 
 
 class RowSessionCreateForm(forms.ModelForm):
@@ -37,15 +45,4 @@ class PersonalFrameForm(forms.ModelForm):
 
     class Meta:
         model = PersonalFrame
-        fields = "__all__"
-
-
-class PersonalThrowForm(forms.Form):
-
-    # name = forms.CharField(max_length=100)
-    # value = models.CharField(max_length=2)
-    frame = forms.ModelChoiceField(queryset=PersonalThrow.objects.all())
-
-    class Meta:
-        model = PersonalThrow
         fields = "__all__"

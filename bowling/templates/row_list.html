@@ -8,8 +8,11 @@
     {% now "jS F Y H:i" as date_now %}
     <h3>{{date_now}}</h3>
   </div>
+  <div class="col-4">
+    <a class="btn btn-outline-danger" href="{% url 'row-create' %}">Create</a>
+  </div>
 </div>
-<table class="table">
+<table class="table table-hover">
   <thead>
     <tr>
       <th scope="col">Name</th>

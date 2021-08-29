@@ -8,13 +8,21 @@
     <h1>Player</h1>
   </div>
   <div class="col-4">
-      <a class="btn btn-secondary" href="{%  url 'player-list' %}">Back</a>
+    <div class="dropdown" >
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+      Actions
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="{% url 'player-list' %}">Back</a></li>
+      <li><a class="dropdown-item" href="{% url 'player-create' %}">Create more</a></li>
+    </ul>
       </div>
+    </div>
 </div>
 
-<h3>{{player.name}}</h3>
-<p class="h5">{{player.last_update}}</p>
-<p class="h5">{{player.row}}</p>
+<h3>Name: {{player.name}}</h3>
+<p class="h5">Last_update: {{player.last_update}}</p>
+<p class="h5">Row: {{player.row}}</p>
 <div class="row">
   <div class="col-12 color_text_red" >
     {% lorem 3 p %}

@@ -1,10 +1,12 @@
 from django.urls import path
 from bowling.views import (
+    RowCreateView,
     RowListView,
     RowDetailView,
     RowSessionDetailView,
     RowSessionCreateView,
     RowSessionUpdateView,
+    RowSessionListView,
     PlayerCreateView,
     PlayerUpdateView,
     PlayerListView,
@@ -17,6 +19,11 @@ from bowling.views import (
     make_throws,
 )
 urlpatterns = [
+    path(
+            "row/create",
+            RowCreateView.as_view(),
+            name="row-create"
+        ),
     path(
         "row/",
         RowListView.as_view(),
@@ -42,6 +49,11 @@ urlpatterns = [
         RowSessionDetailView.as_view(),
         name="row_session-detail"
     ),
+    path(
+            "row_session/",
+            RowSessionListView.as_view(),
+            name="row_session-list"
+        ),
     path(
         "row_session/<int:pk>/throws",
         make_throws,
@@ -92,4 +104,5 @@ urlpatterns = [
          PersonalThrowDetailView.as_view(),
          name="personal_throw-detail"
          ),
+
 ]
